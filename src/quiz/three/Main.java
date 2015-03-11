@@ -49,19 +49,14 @@ public class Main {
 	public static String evaluate(String res) {
 		String result = STRING;
 		try {
-			if (res.indexOf(".") < 0) {
-				throw new NumberFormatException("TEST");
-			}
-			Double.parseDouble(res);
-			result = DOUBLE;
-			return result;
-		} catch (NumberFormatException nfe) {
-		}
-		try {
 			Integer.parseInt(res);
 			result = INT;
-			return result;
 		} catch (NumberFormatException nfe) {
+			try {
+				Double.parseDouble(res);
+				result = DOUBLE;
+			} catch (NumberFormatException nfe2) {
+			}
 		}
 		return result;
 	}

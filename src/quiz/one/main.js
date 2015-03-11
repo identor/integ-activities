@@ -3,19 +3,15 @@ var readline = require('readline');
 var br = '\r\n';
 
 function evaluate(req) {
-  try {
-    var tokens = req.split(/\+/);
-    if (tokens.length != 2) {
-      return 'invalid expression';
-    }
-    var res = (+tokens[0]) + (+tokens[1]);
-    if (res === NaN) {
-      return 'invalid expression';
-    }
-    return res;
-  } catch (err) {
+  var tokens = req.split(/\+/);
+  if (tokens.length != 2) {
     return 'invalid expression';
   }
+  var res = (+tokens[0]) + (+tokens[1]);
+  if (Number.isNaN(+res)) {
+    return 'invalid expression';
+  }
+  return res;
 }
 
 net.createServer(function (socket) {
